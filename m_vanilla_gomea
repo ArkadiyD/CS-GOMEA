@@ -1,0 +1,15 @@
+#!/bin/sh
+
+/usr/bin/clear
+echo "Current directory:" `pwd`
+echo "Current host     :" `hostname`
+echo ""
+
+if [ -f GOMEA_vanilla ]
+then
+  rm GOMEA_vanilla
+fi
+
+echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+g++ -Wall -O3 -o GOMEA_vanilla GOMEA_vanilla.c
+echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

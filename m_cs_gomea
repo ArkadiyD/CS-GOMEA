@@ -1,0 +1,15 @@
+#!/bin/sh
+
+/usr/bin/clear
+echo "Current directory:" `pwd`
+echo "Current host     :" `hostname`
+echo ""
+
+if [ -f CS_GOMEA ]
+then
+  rm CS_GOMEA
+fi
+
+echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+g++ -Wall -O3 -o CS_GOMEA CS_GOMEA.c -I/usr/include/python2.7/ -lpython2.7
+echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
