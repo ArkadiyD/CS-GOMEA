@@ -25,10 +25,12 @@ Problems:
 
 Several runs can be made, folders with results are created automatically:
 
-1. Convolutional Neural Net Surrogate-Assisted GOMEA (CS-GOMEA): 
+1. Convolutional Neural Net Surrogate-Assisted GOMEA (CS-GOMEA):
+
       `python run_cs_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS DELTA WARMUP_PERIOD FIRST_RUN N_RUNS DEVICE_ID TIME_LIMIT`
   
 2. Vanilla GOMEA: 
+
       `python run_vanilla_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS FIRST_RUN N_RUNS`
 
 3. SMAC (https://github.com/automl/pysmac): 
@@ -50,3 +52,16 @@ Parameters description:
 8. `N_RUNS` - number of algorithm runs.
 9. `DEVICE_ID` - If there any CUDA devices, the device id. -1 means CPU usage. It is recommended to use a GPU for acceleration. 
 10. `TIME_LIMIT` - algorithm time limit (in minutes)
+
+### Make plots
+1. Convergence plots: 
+
+      `python convergence_plots.py PROBLEM_NUMBER FIRST_RUN N_RUNS SMAC_HYPEROPT`
+      
+      Creating convergence plots.
+      `FIRST_RUN, N_RUNS` indicate the folders with experiments to look in;
+      `SMAC_HYPEROPT` indicates whether to include SMAC and Hyperopt runs on plots
+
+2. Scalability plots: `python scalability_plots.py`. 
+
+      Simply creating all scalability plots for all available problems instances
