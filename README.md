@@ -4,10 +4,15 @@ Paper: Arkadiy Dushatskiy, Adriënne M. Mendrik, Tanja Alderliesten, and Peter A
 
 Link to the paper: https://dl.acm.org/citation.cfm?id=3321760
 
+---
+### Compilation
+
 To compile CS-GOMEA: `./m_cs_gomea`
 
 To compile vanilla GOMEA: `./m_vanilla_gomea`
 
+---
+### Benchmark problems
 Problems:
 
 0. Onemax
@@ -16,13 +21,32 @@ Problems:
 3. NK Landscapes
 4. HIFF
 
-Run algorithms (make several runs, folders with results are created automatically):
+### Run algorithms
 
-1. CS-GOMEA: `python un_cs_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS DELTA WARMUP_PERIOD FIRST_RUN N_RUNS DEVICE_ID TIME`
+Several runs can be made, folders with results are created automatically:
 
-2. vanilla GOMEA: `python run_vanilla_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS FIRST_RUN N_RUNS`
+1. Convolutional Neural Net Surrogate-Assisted GOMEA (CS-GOMEA): 
+      `python run_cs_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS DELTA WARMUP_PERIOD FIRST_RUN N_RUNS DEVICE_ID TIME_LIMIT`
+  
+2. Vanilla GOMEA: 
+      `python run_vanilla_gomea.py PROBLEM_NUMBER DIMENSIONALITY FOS_TYPE MAX_EVALUATIONS FIRST_RUN N_RUNS`
 
-3. SMAC: `python run_vanilla_gomea.py  PROBLEM_NUMBER DIMENSIONALITY FIRST_RUN N_RUNS N_EVALUATIONS`
+3. SMAC (https://github.com/automl/pysmac): 
 
-4. Hyperopt: `python run_vanilla_gomea.py  PROBLEM_NUMBER DIMENSIONALITY FIRST_RUN N_RUNS N_EVALUATIONS`
+      `python run_vanilla_gomea.py  PROBLEM_NUMBER DIMENSIONALITY FIRST_RUN N_RUNS N_EVALUATIONS`
 
+4. Hyperopt (implementation of Tree Parzen Estimator, https://github.com/hyperopt/hyperopt): 
+
+      `python run_vanilla_gomea.py  PROBLEM_NUMBER DIMENSIONALITY FIRST_RUN N_RUNS N_EVALUATIONS`
+
+Parameters description:
+1. `PROBLEM_NUMBER` - problem number chosen from above-mentioned problems
+2. `DIMENSIONALITY` - number of variables
+3. `FOS_TYPE` - FOS algorithm of GOMEA, 1 (the Linkage Tree) is recommended
+4. `MAX_EVALUATIONS` - maximum number of function evaluations (real ones) allowed
+5. `DELTA` - a parameter of CS-GOMEA determining how aggressive real evaluations are. The recommended value is 1.02
+6. `WARMUP_PERIOD` - the number of solutions in warm-up period of CS-GOMEA. This parameter is problem dependent, but it is suggested to generate at least 100 solutions to train the surrogate model.
+7. `FIRST_RUN` - the id of the first run of in a series of runs. While running experiments, folders with names `P_S/R` are created, where P, S, R are `PROBLEM_NUMBER`, `DIMENSIONALITY` and id of run respectively.
+8. `N_RUNS` - number of algorithm runs.
+9. `DEVICE_ID` - If there any CUDA devices, the device id. -1 means CPU usage. It is recommended to use a GPU for acceleration. 
+10. `TIME_LIMIT` - algorithm time limit (in minutes)
